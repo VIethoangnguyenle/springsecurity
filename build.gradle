@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.hoang'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+
+	implementation group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '13.0.1'
+	implementation group: 'org.keycloak', name: 'keycloak-spring-security-adapter', version: '13.0.1'
+	implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '13.0.1'
+	implementation group: 'org.keycloak.bom', name: 'keycloak-adapter-bom', version: '13.0.1', ext: 'pom'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+	implementation "net.logstash.logback:logstash-logback-encoder:6.6"
+	implementation 'ch.qos.logback:logback-classic:1.2.10'
+
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
+	implementation 'redis.clients:jedis:4.0.0'
+}
+
+test {
+	useJUnitPlatform()
+}

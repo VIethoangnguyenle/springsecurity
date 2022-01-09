@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+    <property name="LOG_PATTERN" value="%highlight([%-5level]):%boldGreen([${log.env}]):[%d{yyyy-MM-dd HH:mm:ss.SSS}][%t]%boldCyan([%c{1}]):%line: %highlight(%m) %n" />
+    <property name="LOG_PATTERN_FILE" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%c{1}] - %msg%n" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                ${LOG_PATTERN}
+            </Pattern>
+        </layout>
+    </appender>
+
+
+    <logger name="org.springframework.ws.client.MessageTracing" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+    </root>
+
+</configuration>

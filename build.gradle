@@ -39,8 +39,7 @@ dependencies {
 
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 	implementation 'redis.clients:jedis:4.0.0'
+	implementation group: 'org.json', name: 'json', version: '20210307'
+
 }
 
-test {
-	useJUnitPlatform()
-}

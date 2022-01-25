@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  hoang-api:
+    build: ./hoang-api
+    image: spring-authentication:latest
+    ports:
+      - 8088:8080

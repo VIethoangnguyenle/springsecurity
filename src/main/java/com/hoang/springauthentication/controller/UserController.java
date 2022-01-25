@@ -5,11 +5,8 @@ import com.hoang.springauthentication.dto.LoginDto;
 import com.hoang.springauthentication.dto.UserDto;
 import com.hoang.springauthentication.jwtprovider.JwtProvider;
 import com.hoang.springauthentication.keycloak.KeycloakService;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.common.VerificationException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -18,7 +15,6 @@ import java.security.Principal;
 
 @RestController
 @Slf4j
-@Validated
 @RequestMapping("/api/user")
 public class UserController {
 
@@ -41,12 +37,9 @@ public class UserController {
         return userService.login(loginDto);
     }
 
-    @GetMapping("/te")
     @RolesAllowed("user")
-    public RestResponse<Object> testRole(HttpServletRequest request) {
-//        log.info("vo ne");
-//        log.info("{}", request.getHeader(HttpHeaders.AUTHORIZATION));
-//        log.info("{}", keycloakService.getUserRoles("769dc259-2282-4a6e-a36e-1a29ec8dd369"));
+    @GetMapping("/te")
+    public RestResponse<Object> testRole(HttpServletRequest request, Principal principal) {
         JwtProvider.getRoleFromCurrentToken();
         return new RestResponse<>().success("Helloooooo!!!!!");
     }

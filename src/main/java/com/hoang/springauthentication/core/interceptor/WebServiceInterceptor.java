@@ -3,6 +3,7 @@ package com.hoang.springauthentication.core.interceptor;
 import com.hoang.springauthentication.jwtprovider.JwtProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,7 +16,9 @@ public class WebServiceInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("{}", response.getStatus());
-        JwtProvider.getRoleFromCurrentToken();
+        if (request.getHeader(HttpHeaders.AUTHORIZATION) != null) {
+            log.info("bear {}", JwtProvider.getRoleFromCurrentToken());
+        }
         return true;
     }
 
